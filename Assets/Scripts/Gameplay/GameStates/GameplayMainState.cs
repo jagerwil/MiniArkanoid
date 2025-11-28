@@ -15,14 +15,17 @@ namespace Game.Gameplay.GameStates {
         
         public void Enter() {
             //Spawn objects!
-            _inputService.Enable();
             
             //Subscribe to some event that would call EndGame()
             //Subscribe to some event that would call RestartGame()
+            
+            _inputService.Enable();
         }
         
         public void Exit() {
             _inputService.Disable();
+            
+            //Unsub from all events
         }
 
         private void EndGame(bool isWon) {

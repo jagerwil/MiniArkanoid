@@ -13,8 +13,11 @@ namespace Game.Gameplay.GameStates {
             //Show game over / win window?
             //Subscribe to some event that would call RestartGame()
         }
-        
-        public void Exit() { }
+
+        public void Exit() {
+            //Hide game over / win window?
+            //Unsub from all events
+        }
 
         private void RestartGame() {
             _stateMachine.Enter<GameplayRestartState>();
