@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace Game.Gameplay.Platform {
+namespace Game.Gameplay.Platforms {
     public class PlatformHorizontalMovement : MonoBehaviour {
         [SerializeField] private float _moveSpeed = 5f;
         

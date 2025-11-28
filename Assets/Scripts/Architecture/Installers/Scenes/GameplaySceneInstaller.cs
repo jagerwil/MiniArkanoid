@@ -1,4 +1,6 @@
 using Game.Architecture.SceneInitializers;
+using Game.Gameplay._Factories;
+using Game.Gameplay._Factories.Implementations;
 using Game.Gameplay._Services;
 using Game.Gameplay._Services.Implementations;
 using Game.Gameplay.GameStates;
@@ -7,6 +9,9 @@ using Zenject;
 
 namespace Game.Architecture.Installers.Scenes {
     public class GameplaySceneInstaller : MonoInstaller {
+        [SerializeField] private Transform _platformSpawnRoot;
+        [SerializeField] private Transform _ballsSpawnRoot;
+        
         public override void InstallBindings() {
             BindServices();
             BindProviders();
@@ -25,7 +30,11 @@ namespace Game.Architecture.Installers.Scenes {
         }
 
         private void BindFactories() {
+            Container.Bind<IPlatformFactory>().To<PlatformFactory>()
+                     .AsSingle().WithArguments(_platformSpawnRoot);
             
+            Container.Bind<IBallFactory>().To<BallFactory>()
+                     .AsSingle().WithArguments(_ballsSpawnRoot);
         }
 
         private void BindGameStates() {

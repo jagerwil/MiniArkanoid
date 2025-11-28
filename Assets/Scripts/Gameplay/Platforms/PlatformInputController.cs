@@ -1,19 +1,19 @@
-using System;
 using Game.Gameplay._Services;
 using R3;
 using UnityEngine;
 using Zenject;
 
-namespace Game.Gameplay.Platform {
+namespace Game.Gameplay.Platforms {
     public class PlatformInputController : MonoBehaviour {
         [SerializeField] private BoxCollider2D _collider;
         [SerializeField] private Transform _graphicsRoot;
         [Space]
         [SerializeField] private PlatformHorizontalMovement _movement;
+        [SerializeField] private PlatformBallHandler _ballHandler;
         
         private readonly CompositeDisposable _disposable = new();
         private IInputService _inputService;
-        
+
         [Inject]
         private void Inject(IInputService inputService) {
             _inputService = inputService;
@@ -33,7 +33,7 @@ namespace Game.Gameplay.Platform {
         }
 
         private void ShootBallTriggered() {
-            Debug.Log("Shoot ball triggered!");
+            _ballHandler.ShootBall();
         }
     }
 }

@@ -15,8 +15,18 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 94e247720f55f8f4fb4ab6923c331f66
   m_SerializeEntries:
+  - m_GUID: 380acd9d8ca68c24a9beb224f65342bc
+    m_Address: Assets/Prefabs/Gameplay/Ball.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8c9cfa26abfee488c85f1582747f6a02
     m_Address: Assets/Scenes/Game.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 983a0cbdcc9d0ed4991cb56246568ff5
+    m_Address: Assets/Prefabs/Gameplay/Platform.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

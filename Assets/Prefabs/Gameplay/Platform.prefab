@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3098357468586175909
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3997182252598845502}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3997182252598845502
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3098357468586175909}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5030160675635522874}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3331421034587594759
 GameObject:
   m_ObjectHideFlags: 0
@@ -79,7 +110,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a2d3fdd1898804447845f1ee70e8e12f, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.7283019, g: 0.7283019, b: 0.7283019, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,8 +130,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5030160675635522874}
+  - component: {fileID: 3221819066346076737}
   - component: {fileID: 3284057640895811173}
   - component: {fileID: 5977144186985760484}
+  - component: {fileID: 6626493227049128471}
   - component: {fileID: 4089680517023595292}
   m_Layer: 0
   m_Name: Platform
@@ -123,8 +156,22 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8079354177054599893}
+  - {fileID: 3997182252598845502}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3221819066346076737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3492635933310196540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 212b46a86618e004bb0e7758c06263e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.Platform.Platform
+  _ballHandler: {fileID: 6626493227049128471}
 --- !u!114 &3284057640895811173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,6 +187,7 @@ MonoBehaviour:
   _collider: {fileID: 4089680517023595292}
   _graphicsRoot: {fileID: 8079354177054599893}
   _movement: {fileID: 5977144186985760484}
+  _ballHandler: {fileID: 6626493227049128471}
 --- !u!114 &5977144186985760484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,7 +200,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61b6016f20d62714a9dfac7bf28460a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.Platform.PlatformHorizontalMovement
-  _rigidbody: {fileID: 0}
+  _moveSpeed: 5
+--- !u!114 &6626493227049128471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3492635933310196540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c8513079b8fb943b81851d5df1bcd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.Platform.PlatformBallHandler
+  _ballSpawnPoint: {fileID: 3997182252598845502}
 --- !u!61 &4089680517023595292
 BoxCollider2D:
   m_ObjectHideFlags: 0
