@@ -29,6 +29,7 @@ namespace Game.Gameplay.Platforms {
         public void TryDespawnBall() {
             if (_holdBall && _ballFactory != null) {
                 _ballFactory.Despawn(_holdBall);
+                _holdBall = null;
             }
         }
 

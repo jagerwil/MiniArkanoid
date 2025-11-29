@@ -24,6 +24,7 @@ namespace Game.Gameplay.Balls {
 
         public void OnSpawned() {
             _collider.enabled = false;
+            _rigidbody.simulated = false;
             _isMoving = false;
         }
         
@@ -35,6 +36,7 @@ namespace Game.Gameplay.Balls {
 
         public void Shoot(Vector2 direction) {
             _collider.enabled = true;
+            _rigidbody.simulated = true;
             _isMoving = true;
             
             _rigidbody.linearVelocity = direction.normalized * _shootSpeed;

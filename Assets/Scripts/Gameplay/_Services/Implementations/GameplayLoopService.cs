@@ -24,8 +24,6 @@ namespace Game.Gameplay._Services.Implementations {
             _ballFactory = ballFactory;
             
             _info = gameConfig.GameplayLoopInfo;
-
-            _ballFactory.onAllBallsDespawned += TryRespawnBall;
         }
 
         public void StartGame() {
