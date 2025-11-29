@@ -28,9 +28,12 @@ namespace Game.Gameplay.Platforms {
         }
 
         public void ShootBall() {
-            if (_holdBall) {
-                _holdBall.Shoot(Vector2.up);
+            if (!_holdBall) {
+                return;
             }
+            
+            _holdBall.Shoot(Vector2.up);
+            _holdBall = null;
         }
     }
 }

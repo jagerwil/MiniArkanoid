@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7601897222839478237}
   - component: {fileID: 2466287851003912959}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,9 +100,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2261371028841261822}
   - component: {fileID: 6829100089477241615}
+  - component: {fileID: 7188685436588953409}
   - component: {fileID: 7425225409048417198}
   - component: {fileID: 5873673267918434631}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,6 +140,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.Balls.Ball
   _rigidbody: {fileID: 5873673267918434631}
   _shootSpeed: 5
+--- !u!114 &7188685436588953409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8349766845883225290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f18bda286e8231a4ebcb310b9c74bfe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.Balls.BallDamage
+  _damage: 1
 --- !u!58 &7425225409048417198
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -191,7 +205,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 40f63eb544b0e6c408f602222e968555, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

@@ -1,6 +1,8 @@
 using Game.Architecture.SceneInitializers;
 using Game.Gameplay._Factories;
 using Game.Gameplay._Factories.Implementations;
+using Game.Gameplay._Providers;
+using Game.Gameplay._Providers.Implementations;
 using Game.Gameplay._Services;
 using Game.Gameplay._Services.Implementations;
 using Game.Gameplay.GameStates;
@@ -23,10 +25,11 @@ namespace Game.Architecture.Installers.Scenes {
 
         private void BindServices() {
             Container.Bind<IInputService>().To<InputService>().AsSingle();
+            Container.Bind<IBallService>().To<BallService>().AsSingle();
         }
 
         private void BindProviders() {
-            
+            Container.Bind<IPlatformProvider>().To<PlatformProvider>().AsSingle();
         }
 
         private void BindFactories() {
