@@ -7,6 +7,7 @@ using Game.Gameplay._Services;
 using Game.Gameplay._Services.Implementations;
 using Game.Gameplay.Bricks;
 using Game.Gameplay.GameStates;
+using Game.Gameplay.UI;
 using Jagerwil.Core.Services;
 using Jagerwil.Core.Services.Implementations;
 using UnityEngine;
@@ -15,6 +16,7 @@ using Zenject;
 namespace Game.Architecture.Installers.Scenes {
     public class GameplaySceneInstaller : MonoInstaller {
         [SerializeField] private BricksField _bricksField;
+        [SerializeField] private GameUI _gameUI;
         [Space]
         [SerializeField] private Transform _platformSpawnRoot;
         [SerializeField] private Transform _ballsSpawnRoot;
@@ -37,9 +39,14 @@ namespace Game.Architecture.Installers.Scenes {
 
         private void BindProviders() {
             Container.Bind<IPlatformProvider>().To<PlatformProvider>().AsSingle();
+            
             Container.Bind<IBricksFieldProvider>()
                      .To<BricksFieldProvider>()
                      .AsSingle().WithArguments(_bricksField);
+            
+            Container.Bind<IGameUIProvider>()
+                     .To<GameUIProvider>()
+                     .AsSingle().WithArguments(_gameUI);
         }
 
         private void BindFactories() {

@@ -461,6 +461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GravityPlatformer2D.Architecture.Installers.Scenes.GameplaySceneInstaller
   _bricksField: {fileID: 240987054}
+  _gameUI: {fileID: 1975707417}
   _platformSpawnRoot: {fileID: 646669470}
   _ballsSpawnRoot: {fileID: 1930485161}
 --- !u!114 &106453404
@@ -5922,6 +5923,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1975707416}
+  - component: {fileID: 1975707417}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -5949,6 +5951,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1975707417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975707415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aab1da79430a7241a3edc738c7ffe9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.UI.GameUI
 --- !u!1001 &2018487090
 PrefabInstance:
   m_ObjectHideFlags: 0

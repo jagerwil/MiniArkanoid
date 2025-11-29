@@ -48,7 +48,7 @@ namespace Game.Gameplay.GameStates {
                 _gameplayLoopService.onGameOver -= GameLost;
             }
 
-            if (_bricksFieldProvider != null && _bricksFieldProvider.BricksField) {
+            if (_bricksFieldProvider?.BricksField) {
                 _bricksFieldProvider.BricksField.onAllBricksDestroyed -= GameWon;
             }
             
