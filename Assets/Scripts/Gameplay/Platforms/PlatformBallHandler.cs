@@ -1,3 +1,4 @@
+using System;
 using Game.Gameplay._Factories;
 using Game.Gameplay.Balls;
 using UnityEngine;
@@ -11,6 +12,10 @@ namespace Game.Gameplay.Platforms {
         [Inject] private IBallFactory _ballFactory;
         
         private Ball _holdBall;
+
+        private void OnDisable() {
+            TryDespawnBall();
+        }
 
         public void SpawnBall() {
             if (_holdBall) {

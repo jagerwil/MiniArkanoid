@@ -9,5 +9,6 @@ namespace Game.Gameplay._Services {
         public event Action onGameOver;
         
         public void StartGame();
+        public void StopGame();
     }
 }

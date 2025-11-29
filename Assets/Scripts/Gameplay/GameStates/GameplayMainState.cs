@@ -51,7 +51,8 @@ namespace Game.Gameplay.GameStates {
             if (_bricksFieldProvider?.BricksField) {
                 _bricksFieldProvider.BricksField.onAllBricksDestroyed -= GameWon;
             }
-            
+
+            _gameplayLoopService.StopGame();
             _inputService.Disable();
         }
 

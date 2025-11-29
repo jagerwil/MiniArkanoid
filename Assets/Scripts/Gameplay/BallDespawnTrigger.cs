@@ -6,7 +6,7 @@ namespace Game.Gameplay {
     public class BallDespawnTrigger : MonoBehaviour {
         private void OnTriggerEnter2D(Collider2D other) {
             var ball = other.gameObject.GetComponent<Ball>();
-            ball.Despawn(true);
+            ball.Despawn();
         }
     }
 }

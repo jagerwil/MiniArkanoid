@@ -31,6 +31,12 @@ namespace Game.Gameplay._Services.Implementations {
         public void StartGame() {
             _playerLivesLeft.Value = MaxPlayerLives;
             SpawnBall();
+            
+            _ballFactory.onAllBallsDespawned += TryRespawnBall;
+        }
+
+        public void StopGame() {
+            _ballFactory.onAllBallsDespawned -= TryRespawnBall;
         }
 
         private void TryRespawnBall() {
