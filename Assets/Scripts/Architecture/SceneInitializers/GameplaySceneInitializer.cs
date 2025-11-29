@@ -10,13 +10,13 @@ namespace Game.Architecture.SceneInitializers {
         public GameplaySceneInitializer(IGameStateMachine stateMachine,
             GameplayInitializationState initializationState,
             GameplayMainState mainState,
-            GameplayGameEndState gameEndState,
+            GameplayGameResultState gameResultState,
             GameplayRestartState restartState) {
             _stateMachine = stateMachine;
             
             _stateMachine.Register(initializationState);
             _stateMachine.Register(mainState);
-            _stateMachine.Register(gameEndState);
+            _stateMachine.Register(gameResultState);
             _stateMachine.Register(restartState);
         }
         
@@ -31,7 +31,7 @@ namespace Game.Architecture.SceneInitializers {
 
             _stateMachine.Unregister<GameplayInitializationState>();
             _stateMachine.Unregister<GameplayMainState>();
-            _stateMachine.Unregister<GameplayGameEndState>();
+            _stateMachine.Unregister<GameplayGameResultState>();
             _stateMachine.Unregister<GameplayRestartState>();
         }
     }

@@ -1,39 +1,42 @@
 using Game.Gameplay._Factories;
 using Game.Gameplay._Providers;
 using Game.Gameplay._Services;
-using Game.Gameplay.Windows;
 using Jagerwil.Core.Architecture.StateMachine;
-using Jagerwil.Core.Services;
-using UnityEngine;
 
 namespace Game.Gameplay.GameStates {
     public class GameplayMainState : IGameState {
         private readonly IGameStateMachine _stateMachine;
+        private readonly IInputService _inputService;
+        private readonly IGameplayLoopService _gameplayLoopService;
         private readonly IPlatformFactory _platformFactory;
         private readonly IPlatformProvider _platformProvider;
-        private readonly IGameplayLoopService _gameplayLoopService;
-        private readonly IInputService _inputService;
+        private readonly IBricksFieldProvider _bricksFieldProvider;
         
         public GameplayMainState(IGameStateMachine stateMachine, 
+            IInputService inputService,
+            IGameplayLoopService gameplayLoopService,
             IPlatformFactory platformFactory, 
             IPlatformProvider platformProvider,
-            IGameplayLoopService gameplayLoopService,
-            IInputService inputService) {
+            IBricksFieldProvider bricksFieldProvider) {
             _stateMachine = stateMachine;
             
-            _platformFactory = platformFactory;
-            _platformProvider = platformProvider;
-            
-            _gameplayLoopService = gameplayLoopService;
             _inputService = inputService;
+            _gameplayLoopService = gameplayLoopService;
+            
+            _platformFactory = platformFactory;
+            
+            _platformProvider = platformProvider;
+            _bricksFieldProvider = bricksFieldProvider;
         }
         
         public void Enter() {
             var platform = _platformFactory.Spawn();
             _platformProvider.SetPlatform(platform);
 
-            _gameplayLoopService.onGameOver += GameOver;
+            _gameplayLoopService.onGameOver += GameLost;
             _gameplayLoopService.StartGame();
+
+            _bricksFieldProvider.BricksField.onAllBricksDestroyed += GameWon;
 
             //Subscribe to some event that would call RestartGame()
             
@@ -42,18 +45,26 @@ namespace Game.Gameplay.GameStates {
         
         public void Exit() {
             if (_gameplayLoopService != null) {
-                _gameplayLoopService.onGameOver -= GameOver;
+                _gameplayLoopService.onGameOver -= GameLost;
+            }
+
+            if (_bricksFieldProvider != null && _bricksFieldProvider.BricksField) {
+                _bricksFieldProvider.BricksField.onAllBricksDestroyed -= GameWon;
             }
             
             _inputService.Disable();
         }
 
-        private void GameOver() {
+        private void GameLost() {
             EndGame(false);
         }
 
+        private void GameWon() {
+            EndGame(true);
+        }
+
         private void EndGame(bool isWon) {
-            _stateMachine.Enter<GameplayGameEndState, bool>(isWon);
+            _stateMachine.Enter<GameplayGameResultState, bool>(isWon);
         }
 
         private void RestartGame() {

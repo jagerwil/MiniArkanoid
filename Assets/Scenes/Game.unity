@@ -460,6 +460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad2fa0577b34edb489aea2b512c86ed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GravityPlatformer2D.Architecture.Installers.Scenes.GameplaySceneInstaller
+  _bricksField: {fileID: 240987054}
   _platformSpawnRoot: {fileID: 646669470}
   _ballsSpawnRoot: {fileID: 1930485161}
 --- !u!114 &106453404
@@ -6599,17 +6600,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 256382673}
     m_Modifications:
-    - target: {fileID: 709167413654380477, guid: 23f74359b24b5824983f56354d41ff7c, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 670.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 709167413654380477, guid: 23f74359b24b5824983f56354d41ff7c, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 177.58
-      objectReference: {fileID: 0}
     - target: {fileID: 3253438531703195961, guid: 23f74359b24b5824983f56354d41ff7c, type: 3}
       propertyPath: m_Name
-      value: GameOverWindow
+      value: GameResultWindow
       objectReference: {fileID: 0}
     - target: {fileID: 3253438531703195961, guid: 23f74359b24b5824983f56354d41ff7c, type: 3}
       propertyPath: m_IsActive
@@ -6694,30 +6687,6 @@ PrefabInstance:
     - target: {fileID: 3843540742348043200, guid: 23f74359b24b5824983f56354d41ff7c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8356465030535976788, guid: 23f74359b24b5824983f56354d41ff7c, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8356465030535976788, guid: 23f74359b24b5824983f56354d41ff7c, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8356465030535976788, guid: 23f74359b24b5824983f56354d41ff7c, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 640.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 8356465030535976788, guid: 23f74359b24b5824983f56354d41ff7c, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 167.58
-      objectReference: {fileID: 0}
-    - target: {fileID: 8356465030535976788, guid: 23f74359b24b5824983f56354d41ff7c, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 335.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 8356465030535976788, guid: 23f74359b24b5824983f56354d41ff7c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -88.79
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
