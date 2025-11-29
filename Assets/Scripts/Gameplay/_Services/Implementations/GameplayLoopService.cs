@@ -1,8 +1,8 @@
+using System;
 using Game.Configs;
 using Game.Gameplay._Factories;
 using Game.Gameplay._Providers;
 using R3;
-using UnityEngine;
 
 namespace Game.Gameplay._Services.Implementations {
     public class GameplayLoopService : IGameplayLoopService {
@@ -15,6 +15,8 @@ namespace Game.Gameplay._Services.Implementations {
         public ReadOnlyReactiveProperty<int> PlayerLivesLeft => _playerLivesLeft;
         public int MaxPlayerLives => _info.PlayerLives;
         
+        public event Action onGameOver;
+
         public GameplayLoopService(IPlatformProvider platformProvider,
             IBallFactory ballFactory,
             GameConfig gameConfig) {
@@ -33,7 +35,7 @@ namespace Game.Gameplay._Services.Implementations {
 
         private void TryRespawnBall() {
             if (_playerLivesLeft.Value <= 0) {
-                Debug.Log("GAME OVER!");
+                onGameOver?.Invoke();
                 return;
             }
 

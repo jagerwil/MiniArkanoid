@@ -1,7 +1,9 @@
 using Game.Gameplay._Factories;
 using Game.Gameplay._Providers;
 using Game.Gameplay._Services;
+using Game.Gameplay.Windows;
 using Jagerwil.Core.Architecture.StateMachine;
+using Jagerwil.Core.Services;
 using UnityEngine;
 
 namespace Game.Gameplay.GameStates {
@@ -29,19 +31,25 @@ namespace Game.Gameplay.GameStates {
         public void Enter() {
             var platform = _platformFactory.Spawn();
             _platformProvider.SetPlatform(platform);
-            
+
+            _gameplayLoopService.onGameOver += GameOver;
             _gameplayLoopService.StartGame();
-            
-            //Subscribe to some event that would call EndGame()
+
             //Subscribe to some event that would call RestartGame()
             
             _inputService.Enable();
         }
         
         public void Exit() {
-            _inputService.Disable();
+            if (_gameplayLoopService != null) {
+                _gameplayLoopService.onGameOver -= GameOver;
+            }
             
-            //Unsub from all events
+            _inputService.Disable();
+        }
+
+        private void GameOver() {
+            EndGame(false);
         }
 
         private void EndGame(bool isWon) {
