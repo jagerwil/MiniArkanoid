@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61b6016f20d62714a9dfac7bf28460a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.Platform.PlatformHorizontalMovement
-  _moveSpeed: 5
+  _moveSpeed: 10
 --- !u!114 &6626493227049128471
 MonoBehaviour:
   m_ObjectHideFlags: 0
