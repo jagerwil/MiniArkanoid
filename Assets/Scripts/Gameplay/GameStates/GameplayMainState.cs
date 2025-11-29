@@ -9,20 +9,20 @@ namespace Game.Gameplay.GameStates {
         private readonly IGameStateMachine _stateMachine;
         private readonly IPlatformFactory _platformFactory;
         private readonly IPlatformProvider _platformProvider;
-        private readonly IBallService _ballService;
+        private readonly IGameplayLoopService _gameplayLoopService;
         private readonly IInputService _inputService;
         
         public GameplayMainState(IGameStateMachine stateMachine, 
             IPlatformFactory platformFactory, 
             IPlatformProvider platformProvider,
-            IBallService ballService,
+            IGameplayLoopService gameplayLoopService,
             IInputService inputService) {
             _stateMachine = stateMachine;
             
             _platformFactory = platformFactory;
             _platformProvider = platformProvider;
             
-            _ballService = ballService;
+            _gameplayLoopService = gameplayLoopService;
             _inputService = inputService;
         }
         
@@ -30,7 +30,7 @@ namespace Game.Gameplay.GameStates {
             var platform = _platformFactory.Spawn();
             _platformProvider.SetPlatform(platform);
             
-            _ballService.SpawnBall();
+            _gameplayLoopService.StartGame();
             
             //Subscribe to some event that would call EndGame()
             //Subscribe to some event that would call RestartGame()

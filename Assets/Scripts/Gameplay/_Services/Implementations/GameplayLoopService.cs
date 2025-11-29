@@ -1,0 +1,48 @@
+using Game.Configs;
+using Game.Gameplay._Factories;
+using Game.Gameplay._Providers;
+using R3;
+using UnityEngine;
+
+namespace Game.Gameplay._Services.Implementations {
+    public class GameplayLoopService : IGameplayLoopService {
+        private readonly IPlatformProvider _platformProvider;
+        private readonly IBallFactory _ballFactory;
+        private readonly GameplayLoopInfo _info;
+        
+        private readonly ReactiveProperty<int> _playerLivesLeft = new();
+
+        public ReadOnlyReactiveProperty<int> PlayerLivesLeft => _playerLivesLeft;
+        public int MaxPlayerLives => _info.PlayerLives;
+        
+        public GameplayLoopService(IPlatformProvider platformProvider,
+            IBallFactory ballFactory,
+            GameConfig gameConfig) {
+            _platformProvider = platformProvider;
+            _ballFactory = ballFactory;
+            
+            _info = gameConfig.GameplayLoopInfo;
+
+            _ballFactory.onAllBallsDespawned += TryRespawnBall;
+        }
+
+        public void StartGame() {
+            _playerLivesLeft.Value = MaxPlayerLives;
+            SpawnBall();
+        }
+
+        private void TryRespawnBall() {
+            if (_playerLivesLeft.Value <= 0) {
+                Debug.Log("GAME OVER!");
+                return;
+            }
+
+            _playerLivesLeft.Value -= 1;
+            SpawnBall();
+        }
+
+        private void SpawnBall() {
+            _platformProvider.Platform.SpawnBall();
+        }
+    }
+}

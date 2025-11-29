@@ -25,7 +25,7 @@ namespace Game.Architecture.Installers.Scenes {
 
         private void BindServices() {
             Container.Bind<IInputService>().To<InputService>().AsSingle();
-            Container.Bind<IBallService>().To<BallService>().AsSingle();
+            Container.Bind<IGameplayLoopService>().To<GameplayLoopService>().AsSingle();
         }
 
         private void BindProviders() {

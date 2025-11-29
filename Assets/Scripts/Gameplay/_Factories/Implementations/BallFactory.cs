@@ -39,6 +39,7 @@ namespace Game.Gameplay._Factories.Implementations {
         }
 
         public override void Despawn(Ball obj) {
+            base.Despawn(obj);
             if (!obj) {
                 return;
             }
@@ -47,8 +48,6 @@ namespace Game.Gameplay._Factories.Implementations {
             if (!AreAnyObjectsSpawned) {
                 onAllBallsDespawned?.Invoke();
             }
-
-            base.Despawn(obj);
         }
 
         protected override AssetReferenceGameObject GetAssetReference() {

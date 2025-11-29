@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7f85cf2e05cc2242a936c5ce10a2e12, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: Assembly-CSharp::Game.Configs.GameConfig
+  <GameplayLoopInfo>k__BackingField:
+    <PlayerLives>k__BackingField: 3
