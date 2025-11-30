@@ -7,8 +7,5 @@ namespace Game.Gameplay._Services {
         public int MaxPlayerLives { get; }
 
         public event Action onGameOver;
-        
-        public void StartGame();
-        public void StopGame();
     }
 }

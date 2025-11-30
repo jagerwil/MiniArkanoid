@@ -31,11 +31,12 @@ namespace Game.Architecture.Installers.Scenes {
         }
 
         private void BindServices() {
-            Container.Bind<IInputService>().To<InputService>().AsSingle();
-            Container.Bind<IWindowService>().To<WindowService>().AsSingle();
+            Container.BindInterfacesTo<InputService>().AsSingle();
+            Container.BindInterfacesTo<WindowService>().AsSingle();
 
-            Container.Bind<IScoreService>().To<ScoreService>().AsSingle();
-            Container.Bind<IGameplayLoopService>().To<GameplayLoopService>().AsSingle();
+            Container.BindInterfacesTo<TimeService>().AsSingle();
+            Container.BindInterfacesTo<ScoreService>().AsSingle();
+            Container.BindInterfacesTo<GameplayLoopService>().AsSingle();
         }
 
         private void BindProviders() {

@@ -44,7 +44,6 @@ namespace Game.Gameplay.Balls {
         }
 
         public void Shoot(Vector2 direction) {
-            Debug.Log("Shoot!");
             _rigidbody.simulated = true;
             _isMoving = true;
 
@@ -69,16 +68,10 @@ namespace Game.Gameplay.Balls {
             var normalSignY = Mathf.Sign(normal.y);
 
             if (Mathf.Abs(velocity.y) < 0.01f) {
-                Debug.Log($"Normal: {normal}, "
-                          + $"angle: {Vector2.SignedAngle(Vector2.right, velocity)}"
-                          + $" => {Vector2.SignedAngle(Vector2.right, new Vector2(velocitySignX, 0.01f * normalSignY))}");
                 return new Vector2(velocitySignX, 0.01f * normalSignY).normalized;
             }
             
             if (normal.y * _rigidbody.linearVelocity.y < 0) {
-                Debug.Log($"Normal: {normal}, "
-                          + $"angle: {Vector2.SignedAngle(Vector2.right, velocity)}"
-                          + $" => {Vector2.SignedAngle(Vector2.right, new Vector2(velocity.x, -1f * velocity.y))}");
                 return new Vector2(velocity.x, -1f * velocity.y);
             }
 
@@ -117,8 +110,6 @@ namespace Game.Gameplay.Balls {
             
             var resultAngle = Quaternion.Euler(0f, 0f, angle);
             _rigidbody.linearVelocity = resultAngle * (Vector3.right * _shootSpeed);
-            Debug.Log($"BALL ANGLE CORRECTION: Sign: {sign}, Angle: {beforeAngle} => {angle}");
-            Debug.Log($"LINEAR VELOCITY: {prevVelocity} => {_rigidbody.linearVelocity}");
         }
     }
 }

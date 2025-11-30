@@ -5,7 +5,7 @@ using Game.Gameplay._Providers;
 using R3;
 
 namespace Game.Gameplay._Services.Implementations {
-    public class GameplayLoopService : IGameplayLoopService {
+    public class GameplayLoopService : IGameplayLoopService, IGameplayService {
         private readonly IPlatformProvider _platformProvider;
         private readonly IBallFactory _ballFactory;
         private readonly GameplayLoopInfo _info;
@@ -26,14 +26,14 @@ namespace Game.Gameplay._Services.Implementations {
             _info = gameConfig.GameplayLoopInfo;
         }
 
-        public void StartGame() {
+        public void GameplayStarted() {
             _playerLivesLeft.Value = MaxPlayerLives;
             SpawnBall();
             
             _ballFactory.onAllBallsDespawned += TryRespawnBall;
         }
 
-        public void StopGame() {
+        public void GameplayEnded() {
             _ballFactory.onAllBallsDespawned -= TryRespawnBall;
         }
 

@@ -1,10 +1,9 @@
 using System;
 using R3;
-using UnityEngine;
 using CallbackContext = UnityEngine.InputSystem.InputAction.CallbackContext;
 
 namespace Game.Gameplay._Services.Implementations {
-    public class InputService : IInputService {
+    public class InputService : IInputService, IGameplayService {
         private readonly ReactiveProperty<float> _moveAxis = new();
         private readonly InputActions _inputActions = new();
         
@@ -18,11 +17,11 @@ namespace Game.Gameplay._Services.Implementations {
             _inputActions.Player.ShootBall.started += ShootBallStarted;
         }
         
-        public void Enable() {
+        public void GameplayStarted() {
             _inputActions.Enable();
         }
         
-        public void Disable() {
+        public void GameplayEnded() {
             _inputActions.Disable();
         }
 
