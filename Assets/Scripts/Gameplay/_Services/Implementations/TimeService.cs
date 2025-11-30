@@ -8,7 +8,7 @@ namespace Game.Gameplay._Services.Implementations {
     public class TimeService : ITimeService, IGameplayService, IDisposable {
         private readonly ReactiveProperty<TimeSpan> _timeElapsed = new();
         
-        private double _startTime;
+        private float _startTime;
         private CancellationTokenSource _cancelToken;
         
         public ReadOnlyReactiveProperty<TimeSpan> TimeElapsed => _timeElapsed;
@@ -18,7 +18,7 @@ namespace Game.Gameplay._Services.Implementations {
         }
         
         public void GameplayStarted() {
-            _startTime = Time.realtimeSinceStartupAsDouble;
+            _startTime = Time.realtimeSinceStartup;
             UpdateTimerEndlesslyAsync().Forget();
         }
 
@@ -30,10 +30,12 @@ namespace Game.Gameplay._Services.Implementations {
             _cancelToken?.Cancel();
             _cancelToken = new CancellationTokenSource();
 
-            var timeSinceStartup = Time.realtimeSinceStartup;
-            _timeElapsed.Value = TimeSpan.FromSeconds(timeSinceStartup - _startTime);
+            while (true) {
+                var deltaTime = Mathf.Round(Time.realtimeSinceStartup - _startTime);
+                _timeElapsed.Value = TimeSpan.FromSeconds(deltaTime);
             
-            await UniTask.WaitForSeconds(1f, cancellationToken: _cancelToken.Token);
+                await UniTask.WaitForSeconds(1f, cancellationToken: _cancelToken.Token);
+            }
         }
     }
 }
