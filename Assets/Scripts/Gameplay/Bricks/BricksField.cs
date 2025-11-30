@@ -14,20 +14,22 @@ namespace Game.Gameplay.Bricks {
 
         private void Awake() {
             MoveBricksToGrid();
+            RestoreField();
         }
 
         public void RestoreField() {
+            _bricks.Clear();
             foreach (Transform child in transform) {
                 var brick = child.GetComponent<Brick>();
                 if (brick) {
                     brick.Restore();
                 }
+                _bricks.Add(brick);
             }
         }
 
         [Button]
         private void MoveBricksToGrid() {
-            _bricks.Clear();
             foreach (Transform child in transform) {
                 var brick = child.GetComponent<Brick>();
                 if (!brick) {
@@ -36,8 +38,6 @@ namespace Game.Gameplay.Bricks {
 
                 brick.Initialize(() => BrickDestroyed(brick));
                 MoveBrickToGrid(child);
-                
-                _bricks.Add(brick);
             }
         }
 
