@@ -30,6 +30,10 @@ namespace Game.Gameplay.Platforms {
             var velocityOffsetVector = Vector2.right * (_rigidbody.linearVelocityX * _deltaAngleSpeedMultiplier);
             
             var newDirection = (Vector2)(Quaternion.Euler(0f, 0f, positionOffsetAngle) * direction) + velocityOffsetVector;
+            if (newDirection.y < 0f) {
+                newDirection.y = 0.01f;
+            }
+            
             ball.Shoot(newDirection);
         }
     }

@@ -142,7 +142,7 @@ MonoBehaviour:
   _collider: {fileID: 7425225409048417198}
   _shootSpeed: 5
   _minHorizontalAngle: 10
-  _angleCheckThreshold: 9.5
+  _angleCheckThreshold: 9
 --- !u!114 &7188685436588953409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,7 +206,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 0.19634955
   m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_AngularDamping: 0
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 40f63eb544b0e6c408f602222e968555, type: 2}
   m_IncludeLayers:
