@@ -1,16 +1,21 @@
-using System;
+using Game.Configs;
 using Game.Gameplay.Balls;
 using UnityEngine;
+using Zenject;
 
 namespace Game.Gameplay.Platforms {
-    public class PlatformBallCollider : MonoBehaviour {
-        [SerializeField] private Vector2 _platformSize;
-        [SerializeField] private float _deltaAngleAtEdges = 20f;
-        [SerializeField] private float _deltaAngleSpeedMultiplier = 0.2f;
+    public class PlatformBallRedirection : MonoBehaviour {
+        [SerializeField] private PlatformSize _platformSize;
         [SerializeField] private Rigidbody2D _rigidbody;
 
+        private PlatformBallRedirectionInfo _info;
         private float _currentVelocityX;
         private float _previousVelocityX;
+
+        [Inject]
+        private void Inject(PlatformConfig platformConfig) {
+            _info = platformConfig.BallRedirection;
+        }
 
         private void FixedUpdate() {
             _previousVelocityX = _currentVelocityX;
@@ -33,9 +38,11 @@ namespace Game.Gameplay.Platforms {
                 return;
             }
 
+            var platformSize = _platformSize.Size.CurrentValue;
             var platformOffset = (other.contacts[0].point.x - _rigidbody.position.x);
-            var positionOffsetAngle = -1f * _deltaAngleAtEdges * (platformOffset / (_platformSize.x * 0.5f));
-            var velocityOffsetVector = Vector2.right * (_previousVelocityX * _deltaAngleSpeedMultiplier);
+            
+            var positionOffsetAngle = -1f * _info.DeltaAngleAtEdges * (platformOffset / (platformSize.x * 0.5f));
+            var velocityOffsetVector = Vector2.right * (_previousVelocityX * _info.DeltaAngleSpeedMultiplier);
             
             var newDirection = (Vector2)(Quaternion.Euler(0f, 0f, positionOffsetAngle) * direction) + velocityOffsetVector;
             if (newDirection.y < 0f) {

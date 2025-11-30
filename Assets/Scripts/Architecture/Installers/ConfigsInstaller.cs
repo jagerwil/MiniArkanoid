@@ -9,12 +9,14 @@ namespace Game.Architecture.Installers {
         [SerializeField] private PrefabAddresses _prefabAddresses;
         [Space]
         [SerializeField] private GameConfig _gameConfig;
+        [SerializeField] private PlatformConfig _platformConfig;
         
         public override void InstallBindings() {
             Container.Bind<SceneAddressesConfig>().FromInstance(_scenesAddresses).AsSingle();
             Container.Bind<PrefabAddresses>().FromInstance(_prefabAddresses).AsSingle();
             
             Container.Bind<GameConfig>().FromInstance(_gameConfig).AsSingle();
+            Container.Bind<PlatformConfig>().FromInstance(_platformConfig).AsSingle();
         }
     }
 }

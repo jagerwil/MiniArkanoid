@@ -1,14 +1,21 @@
 using System;
+using Game.Configs;
 using Jagerwil.Extensions;
 using UnityEngine;
+using Zenject;
 
 namespace Game.Gameplay.Platforms {
     public class PlatformHorizontalMovement : MonoBehaviour {
         [SerializeField] private Rigidbody2D _rigidbody;
-        [SerializeField] private float _moveSpeed = 5f;
 
+        private PlatformMovementInfo _info;
         private bool _hasTargetPosition;
         private float _targetPositionX;
+
+        [Inject]
+        private void Inject(PlatformConfig platformConfig) {
+            _info = platformConfig.Movement;
+        }
 
         private void FixedUpdate() {
             if (!_hasTargetPosition) {
@@ -28,7 +35,7 @@ namespace Game.Gameplay.Platforms {
 
         public void SetMoveAxis(float moveAxis) {
             _hasTargetPosition = false;
-            _rigidbody.linearVelocityX = moveAxis * _moveSpeed;
+            _rigidbody.linearVelocityX = moveAxis * _info.MoveSpeed;
         }
 
         public void SetMoveTargetPosition(float targetPositionX) {
