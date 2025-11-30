@@ -2,6 +2,9 @@ using System;
 using Jagerwil.Core.Architecture;
 using Jagerwil.Extensions;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 namespace Game.Gameplay.Balls {
     public class Ball : MonoBehaviour, IPoolableObject<Ball> {
@@ -17,10 +20,6 @@ namespace Game.Gameplay.Balls {
 
         public Vector2 Direction => _rigidbody.linearVelocity.normalized;
         public event Action<Ball> onDespawnRequested;
-
-        private void FixedUpdate() {
-            RecalculateVelocity(_rigidbody.linearVelocity);
-        }
 
         private void OnCollisionEnter2D(Collision2D other) {
             if (_rigidbody.linearVelocity.ApproximatelyZero()) {
@@ -60,22 +59,32 @@ namespace Game.Gameplay.Balls {
 
         private Vector2 GetMoveDirectionAfterCollision(Vector2 normal) {
             var velocity = _rigidbody.linearVelocity;
-            if (normal.y.ApproximatelyZero()) {
+            if (velocity.ApproximatelyZero()) {
                 return velocity;
             }
             
+            velocity = ValidateBounceFromObject(velocity, normal);
+
             var velocitySignX = Mathf.Sign(velocity.x);
             var normalSignY = Mathf.Sign(normal.y);
 
             if (Mathf.Abs(velocity.y) < 0.01f) {
                 return new Vector2(velocitySignX, 0.01f * normalSignY).normalized;
             }
-            
-            if (normal.y * _rigidbody.linearVelocity.y < 0) {
-                return new Vector2(velocity.x, -1f * velocity.y);
-            }
 
             return velocity;
+        }
+
+        private Vector2 ValidateBounceFromObject(Vector2 velocity, Vector2 normal) {
+            var dotProduct = Vector2.Dot(normal, velocity);
+            //if dot product is >= 0f, it means that ball already bounced out of the collided object
+            if (dotProduct >= 0f) {
+                return velocity;
+            }
+
+            var angle = Vector2.SignedAngle(velocity, normal);
+            var rotateAngle = 2f * (angle - 90f);
+            return Quaternion.Euler(0f, 0f, rotateAngle) * velocity;
         }
 
         private void RecalculateVelocity(Vector2 moveDirection) {
@@ -104,10 +113,6 @@ namespace Game.Gameplay.Balls {
         }
 
         private void RecalculateVelocityFromAngle(float angle) {
-            var prevVelocity = _rigidbody.linearVelocity;
-            var beforeAngle = Vector2.SignedAngle(Vector2.right, _rigidbody.linearVelocity);
-            var sign = Mathf.Sign(beforeAngle);
-            
             var resultAngle = Quaternion.Euler(0f, 0f, angle);
             _rigidbody.linearVelocity = resultAngle * (Vector3.right * _shootSpeed);
         }

@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.Platform.PlatformInputController
   _collider: {fileID: 4089680517023595292}
-  _graphicsRoot: {fileID: 0}
+  _graphicsRoot: {fileID: 737843192842411599}
   _movement: {fileID: 5977144186985760484}
   _ballHandler: {fileID: 6626493227049128471}
 --- !u!114 &5977144186985760484

@@ -7,7 +7,6 @@ using Zenject;
 namespace Game.Gameplay.Platforms {
     public class PlatformInputController : MonoBehaviour {
         [SerializeField] private BoxCollider2D _collider;
-        [SerializeField] private Transform _graphicsRoot;
         [Space]
         [SerializeField] private PlatformHorizontalMovement _movement;
         [SerializeField] private PlatformBallHandler _ballHandler;
