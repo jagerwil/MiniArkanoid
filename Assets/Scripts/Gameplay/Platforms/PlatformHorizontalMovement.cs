@@ -7,39 +7,33 @@ namespace Game.Gameplay.Platforms {
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private float _moveSpeed = 5f;
 
-        private float _moveAxis;
-        private float _blockedMovementSign;
+        private bool _hasTargetPosition;
+        private float _targetPositionX;
 
         private void FixedUpdate() {
-            if (_moveAxis * _blockedMovementSign > 0f) {
+            if (!_hasTargetPosition) {
+                return;
+            }
+            
+            var deltaPos = (_targetPositionX - _rigidbody.position.x);
+            if (deltaPos.ApproximatelyZero()) {
                 _rigidbody.linearVelocityX = 0f;
                 return;
             }
             
-            _rigidbody.linearVelocityX = _moveAxis * _moveSpeed;
+            //We change linear velocity instead of using MovePosition because we want
+            //a proper velocity for recalculating the ball angle when colliding with a platform
+            _rigidbody.linearVelocityX = deltaPos / Time.fixedDeltaTime;
         }
 
         public void SetMoveAxis(float moveAxis) {
-            _moveAxis = moveAxis;
+            _hasTargetPosition = false;
+            _rigidbody.linearVelocityX = moveAxis * _moveSpeed;
         }
 
-        private void OnCollisionEnter2D(Collision2D other) {
-            var gameBorder = other.gameObject.GetComponent<GameBorder>();
-            if (!gameBorder) {
-                return;
-            }
-            
-            var contactNormal = other.contacts[0].normal;
-            _blockedMovementSign = -1f * Mathf.Sign(contactNormal.x);
-        }
-
-        private void OnCollisionExit2D(Collision2D other) {
-            var gameBorder = other.gameObject.GetComponent<GameBorder>();
-            if (!gameBorder) {
-                return;
-            }
-            
-            _blockedMovementSign = 0f;
+        public void SetMoveTargetPosition(float targetPositionX) {
+            _hasTargetPosition = true;
+            _targetPositionX = targetPositionX;
         }
     }
 }

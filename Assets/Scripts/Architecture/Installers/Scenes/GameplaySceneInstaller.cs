@@ -3,18 +3,17 @@ using Game.Gameplay._Factories;
 using Game.Gameplay._Factories.Implementations;
 using Game.Gameplay._Providers;
 using Game.Gameplay._Providers.Implementations;
-using Game.Gameplay._Services;
 using Game.Gameplay._Services.Implementations;
 using Game.Gameplay.Bricks;
 using Game.Gameplay.GameStates;
 using Game.Gameplay.UI;
-using Jagerwil.Core.Services;
 using Jagerwil.Core.Services.Implementations;
 using UnityEngine;
 using Zenject;
 
 namespace Game.Architecture.Installers.Scenes {
     public class GameplaySceneInstaller : MonoInstaller {
+        [SerializeField] private Camera _camera;
         [SerializeField] private BricksField _bricksField;
         [SerializeField] private GameUI _gameUI;
         [Space]
@@ -40,6 +39,10 @@ namespace Game.Architecture.Installers.Scenes {
         }
 
         private void BindProviders() {
+            Container.Bind<ICameraProvider>()
+                     .To<CameraProvider>()
+                     .AsSingle().WithArguments(_camera);
+            
             Container.Bind<IPlatformProvider>().To<PlatformProvider>().AsSingle();
             
             Container.Bind<IBricksFieldProvider>()

@@ -460,6 +460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad2fa0577b34edb489aea2b512c86ed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GravityPlatformer2D.Architecture.Installers.Scenes.GameplaySceneInstaller
+  _camera: {fileID: 519420031}
   _bricksField: {fileID: 240987054}
   _gameUI: {fileID: 1975707417}
   _platformSpawnRoot: {fileID: 646669470}
@@ -840,7 +841,6 @@ GameObject:
   m_Component:
   - component: {fileID: 265492143}
   - component: {fileID: 265492144}
-  - component: {fileID: 265492145}
   m_Layer: 9
   m_Name: Top
   m_TagString: Untagged
@@ -909,18 +909,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 18.5, y: 0.5}
   m_EdgeRadius: 0
---- !u!114 &265492145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 265492142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d175f3432a0063499bc71f632e58742, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.GameBorder
 --- !u!1001 &314841704
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3380,7 +3368,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1035475726}
   - component: {fileID: 1035475727}
-  - component: {fileID: 1035475728}
   m_Layer: 9
   m_Name: Left
   m_TagString: Untagged
@@ -3449,18 +3436,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.5, y: 10.5}
   m_EdgeRadius: 0
---- !u!114 &1035475728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1035475725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d175f3432a0063499bc71f632e58742, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.GameBorder
 --- !u!1001 &1100136841
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6223,7 +6198,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2111389344}
   - component: {fileID: 2111389345}
-  - component: {fileID: 2111389346}
   m_Layer: 9
   m_Name: Right
   m_TagString: Untagged
@@ -6292,18 +6266,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.5, y: 10.5}
   m_EdgeRadius: 0
---- !u!114 &2111389346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2111389343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d175f3432a0063499bc71f632e58742, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.GameBorder
 --- !u!1 &2129554817
 GameObject:
   m_ObjectHideFlags: 0
