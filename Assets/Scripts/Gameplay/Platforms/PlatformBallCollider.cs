@@ -22,7 +22,6 @@ namespace Game.Gameplay.Platforms {
 
             var direction = ball.Direction;
             if (direction.y < 0f) {
-                direction.y *= -1f;
                 return;
             }
 

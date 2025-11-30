@@ -58,9 +58,7 @@ namespace Game.Gameplay.Balls {
             var sign = Mathf.Sign(angle);
 
             if (Mathf.Abs(angle) < _angleCheckThreshold) {
-                var deltaAngle = sign * _minHorizontalAngle - angle;
-                _rigidbody.linearVelocity = Quaternion.Euler(0f, 0f, deltaAngle) * _rigidbody.linearVelocity;
-                Debug.Log($"BALL ANGLE CORRECTION: Angle: {angle} => {sign * _minHorizontalAngle}");
+                SetVelocityAngle(sign * _minHorizontalAngle);
                 return;
             }
 
@@ -69,10 +67,16 @@ namespace Game.Gameplay.Balls {
             }
 
             if (Mathf.Abs(angle - 180f) < _angleCheckThreshold) {
-                var resultAngle = sign * (180f - _minHorizontalAngle) - angle;
-                _rigidbody.linearVelocity = Quaternion.Euler(0f, 0f, resultAngle) * _rigidbody.linearVelocity;
-                Debug.Log($"BALL ANGLE CORRECTION: Angle: {angle} => {sign * (180f - _minHorizontalAngle)}");
+                SetVelocityAngle(sign * (180f - _minHorizontalAngle));
             }
+        }
+
+        private void SetVelocityAngle(float angle) {
+            var beforeAngle = Vector2.SignedAngle(Vector2.right, _rigidbody.linearVelocity);
+            
+            var resultAngle = Quaternion.Euler(0f, 0f, angle);
+            _rigidbody.linearVelocity = resultAngle * (Vector3.right * _shootSpeed);
+            Debug.Log($"BALL ANGLE CORRECTION: Angle: {beforeAngle} => {angle}");
         }
     }
 }

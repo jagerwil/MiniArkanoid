@@ -39,21 +39,20 @@ namespace Game.Gameplay.GameStates {
             _bricksFieldProvider.BricksField.onAllBricksDestroyed += GameWon;
 
             //Subscribe to some event that would call RestartGame()
-            
             _inputService.Enable();
         }
         
         public void Exit() {
             if (_gameplayLoopService != null) {
                 _gameplayLoopService.onGameOver -= GameLost;
+                _gameplayLoopService.StopGame();
             }
 
             if (_bricksFieldProvider?.BricksField) {
                 _bricksFieldProvider.BricksField.onAllBricksDestroyed -= GameWon;
             }
 
-            _gameplayLoopService.StopGame();
-            _inputService.Disable();
+            _inputService?.Disable();
         }
 
         private void GameLost() {

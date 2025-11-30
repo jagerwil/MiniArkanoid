@@ -33,7 +33,8 @@ namespace Game.Architecture.Installers.Scenes {
         private void BindServices() {
             Container.Bind<IInputService>().To<InputService>().AsSingle();
             Container.Bind<IWindowService>().To<WindowService>().AsSingle();
-            
+
+            Container.Bind<IScoreService>().To<ScoreService>().AsSingle();
             Container.Bind<IGameplayLoopService>().To<GameplayLoopService>().AsSingle();
         }
 
