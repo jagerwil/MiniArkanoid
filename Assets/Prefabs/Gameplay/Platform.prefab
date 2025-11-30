@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 5977144186985760484}
   - component: {fileID: 6626493227049128471}
   - component: {fileID: 966120670000164433}
+  - component: {fileID: 6837680296018801614}
   - component: {fileID: 4089680517023595292}
   - component: {fileID: 9146901505670841507}
   m_Layer: 6
@@ -97,7 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.Platform.PlatformInputController
   _collider: {fileID: 4089680517023595292}
-  _graphicsRoot: {fileID: 737843192842411599}
   _movement: {fileID: 5977144186985760484}
   _ballHandler: {fileID: 6626493227049128471}
 --- !u!114 &5977144186985760484
@@ -139,10 +139,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0530bc256efcb5448fdb86d54300671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.Platforms.PlatformBallCollider
-  _platformSize: {x: 2, y: 0.5}
+  _platformSize: {fileID: 6837680296018801614}
   _deltaAngleAtEdges: 30
   _deltaAngleSpeedMultiplier: 0.2
   _rigidbody: {fileID: 9146901505670841507}
+--- !u!114 &6837680296018801614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3492635933310196540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a79ff55034631e46b0d26caf42d8ecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.Platforms.PlatformSize
+  _initialSize: {x: 2, y: 0.5}
+  _collider: {fileID: 4089680517023595292}
+  _spriteRenderer: {fileID: 8355251543986596830}
 --- !u!61 &4089680517023595292
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -299,7 +314,7 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
+  m_DrawMode: 1
   m_Size: {x: 2, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
