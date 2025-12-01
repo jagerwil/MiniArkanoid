@@ -1,8 +1,8 @@
 using System;
+using Game.Extensions;
 using Game.Gameplay._Services;
 using R3;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
@@ -23,7 +23,7 @@ namespace Game.Gameplay.UI {
         }
 
         private void TimeChanged(TimeSpan time) {
-            _text.text = string.Format(_textFormat, time.ToSafeString());
+            _text.text = string.Format(_textFormat, time.ToMinutesSecondsString());
         }
     }
 }

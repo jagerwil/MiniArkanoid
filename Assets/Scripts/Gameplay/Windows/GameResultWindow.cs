@@ -1,9 +1,9 @@
 using System;
+using Game.Extensions;
 using Game.Gameplay._Services;
 using Jagerwil.Core.UI;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
 namespace Game.Gameplay.Windows {
@@ -11,29 +11,25 @@ namespace Game.Gameplay.Windows {
         [SerializeField] private GameObject _victoryView;
         [SerializeField] private GameObject _gameOverView;
         [Space]
-        [SerializeField] private string _scoreTextFormat = "Score: <color=#FF0>{0}</color>";
+        [SerializeField] private TMP_Text _timeText;
         [SerializeField] private TMP_Text _scoreText;
-        [Space]
-        [SerializeField] private Button _restartButton;
 
+        [Inject] private ITimeService _timeService;
         [Inject] private IScoreService _scoreService;
 
         private Action _clickButtonAction;
-
-        private void Awake() {
-            _restartButton.onClick.AddListener(RestartButtonPressed);
-        }
 
         public void Initialize(bool isVictory, Action restartLevelAction) {
             _clickButtonAction = restartLevelAction;
             
             _victoryView.SetActive(isVictory);
             _gameOverView.SetActive(!isVictory);
-            
-            _scoreText.text = string.Format(_scoreTextFormat, _scoreService.Score.CurrentValue);
+
+            _timeText.text = _timeService.TimeElapsed.CurrentValue.ToMinutesSecondsString();
+            _scoreText.text = _scoreService.Score.CurrentValue.ToString();
         }
 
-        private void RestartButtonPressed() {
+        public void RestartButtonPressed() {
             Hide();
             _clickButtonAction?.Invoke();
         }
