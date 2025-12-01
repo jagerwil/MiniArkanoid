@@ -163,9 +163,9 @@ PlayerSettings:
   targetPixelDensity: 30
   resolutionScalingMode: 0
   resetResolutionOnWindowResize: 0
-  androidSupportedAspectRatio: 1
-  androidMaxAspectRatio: 2.4
-  androidMinAspectRatio: 1
+  androidSupportedAspectRatio: 2
+  androidMaxAspectRatio: 1.9
+  androidMinAspectRatio: 1.777777
   applicationIdentifier:
     Standalone: com.DefaultCompany.2D-URP
   buildNumber:
@@ -387,7 +387,10 @@ PlayerSettings:
       m_Height: 36
       m_Kind: 0
       m_SubKind: 
-  m_BuildTargetBatching: []
+  m_BuildTargetBatching:
+  - m_BuildTarget: Android
+    m_StaticBatching: 1
+    m_DynamicBatching: 0
   m_BuildTargetShaderSettings: []
   m_BuildTargetGraphicsJobs: []
   m_BuildTargetGraphicsJobMode: []
